@@ -1,1 +1,1 @@
-# celebrity-name-detection-app
+# react-tour-app

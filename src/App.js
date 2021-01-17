@@ -2,7 +2,6 @@ import './index.css'
 import { useState } from 'react'
 import React from 'react'
 import Navigation from './components/navigation/navigation'
-import Logo from './components/logo/logo'
 import ImageLinkForm from './components/ImageLinkForm/imageLinkForm'
 import FaceRecognition from './components/faceRecognition/faceRecognition'
 import Rank from './components/rank/rank'
@@ -28,6 +27,8 @@ const App = ({ entries }) => {
   const [imageUrl, setImageUrl] = useState('')
   const [input, setInput] = useState('')
   const [celebName, setCelebName] = useState('')
+  const [apiCall, setApiCall] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [text, setText] = useState('')
   const [user, setUser] = useState({
     id: '',
@@ -54,6 +55,7 @@ const App = ({ entries }) => {
     setRegister(false)
   }
   const handleSignOut = () => {
+    setApiCall(false)
     setSignIn(true)
     setImageUrl('')
     setInput('input')
@@ -72,6 +74,8 @@ const App = ({ entries }) => {
   }
 
   const handleClick = () => {
+    setLoading(true)
+    setApiCall(true)
     setImageUrl(input)
     setText('The celeb name is: ')
     fetch('https://boiling-headland-02130.herokuapp.com/imageurl', {
@@ -98,6 +102,7 @@ const App = ({ entries }) => {
             .catch(console.log)
         }
         detectCeleb(response)
+        setLoading(false)
       })
       .catch((err) => console.log(err))
   }
@@ -119,12 +124,15 @@ const App = ({ entries }) => {
       ) : (
         <div>
           {register || <Navigation handleSignOut={handleSignOut} />}
-          {register || <Logo />}
           {register || <Rank entries={user.entries} name={user.name} />}
           {register || (
             <ImageLinkForm
               handleChange={handleChange}
               handleClick={handleClick}
+              celebName={celebName}
+              text={text}
+              apiCall={apiCall}
+              loading={loading}
             />
           )}
           {register || (
@@ -140,12 +148,18 @@ const App = ({ entries }) => {
         []
       ) : (
         <div>
-          {(navigation, register) && <Logo />}
           {(navigation, register) && (
             <Rank entries={user.entries} name={user.name} />
           )}
           {(navigation, register) && (
-            <ImageLinkForm handleChange={handleChange} />
+            <ImageLinkForm
+              handleChange={handleChange}
+              handleClick={handleClick}
+              celebName={celebName}
+              text={text}
+              apiCall={apiCall}
+              loading={loading}
+            />
           )}
           {(navigation, register) && (
             <FaceRecognition

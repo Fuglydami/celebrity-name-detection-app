@@ -5,7 +5,7 @@ const FaceRecognition = ({ imageUrl, celebName, text
   return (
     <div>
       <div className="center ma">
-        <div className="absolute flex mv2">
+        <div className="absolute mv2">
           <img
             className=""
             id="inputImage"
@@ -14,11 +14,6 @@ const FaceRecognition = ({ imageUrl, celebName, text
             height="auto"
             alt=""
           />
-          <div className=" celebName ml2 ph2">
-            <p className="f4 ttc">
-              <span className="textCeleb">{text}</span> {celebName}
-            </p>
-          </div>
         </div>
       </div>
     </div>

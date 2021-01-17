@@ -1,0 +1,16 @@
+.Tilt {
+  background-color: #fbab7e;
+  background-image: -webkit-linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
+  background-image: -moz-linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
+  background-image: -o-linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
+  background-image: linear-gradient(62deg, #fbab7e 0%, #f7ce68 100%);
+  border-radius: 0.3rem;
+}
+.Tilt-inner {
+  text-align: center;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}

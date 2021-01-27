@@ -29,7 +29,7 @@ const App = ({ entries }) => {
   const [celebName, setCelebName] = useState('')
   const [apiCall, setApiCall] = useState(false)
   const [loading, setLoading] = useState(true)
-  const [text, setText] = useState('')
+  const [name, setName] = useState('')
   const [user, setUser] = useState({
     id: '',
     name: '',
@@ -55,15 +55,18 @@ const App = ({ entries }) => {
     setRegister(false)
   }
   const handleSignOut = () => {
-    setApiCall(false)
     setSignIn(true)
     setImageUrl('')
     setInput('input')
     setCelebName('')
-    setText('')
+    setApiCall(false)
+    setName('')
     setUser({ id: '', name: '', email: '', entries: 0, joined: '' })
   }
-
+const backToLogin=()=>{
+  setRegister(false)
+  setSignIn(true)
+}
   const handleChange = (e) => {
     setInput(e.target.value)
   }
@@ -74,10 +77,11 @@ const App = ({ entries }) => {
   }
 
   const handleClick = () => {
-    setLoading(true)
     setApiCall(true)
+    setName("The celeb name is:")
+    setLoading(true)
     setImageUrl(input)
-    setText('The celeb name is: ')
+
     fetch('https://boiling-headland-02130.herokuapp.com/imageurl', {
       method: 'post',
       headers: { 'content-Type': 'application/json' },
@@ -129,19 +133,13 @@ const App = ({ entries }) => {
             <ImageLinkForm
               handleChange={handleChange}
               handleClick={handleClick}
-              celebName={celebName}
-              text={text}
               apiCall={apiCall}
               loading={loading}
-            />
-          )}
-          {register || (
-            <FaceRecognition
-              imageUrl={imageUrl}
+              name={name}
               celebName={celebName}
-              text={text}
             />
           )}
+          {register || <FaceRecognition imageUrl={imageUrl} />}
         </div>
       )}
       {navigation ? (
@@ -155,26 +153,20 @@ const App = ({ entries }) => {
             <ImageLinkForm
               handleChange={handleChange}
               handleClick={handleClick}
-              celebName={celebName}
-              text={text}
               apiCall={apiCall}
               loading={loading}
-            />
-          )}
-          {(navigation, register) && (
-            <FaceRecognition
-              imageUrl={imageUrl}
               celebName={celebName}
-              text={text}
+              name={name}
             />
           )}
+          {(navigation, register) && <FaceRecognition imageUrl={imageUrl} />}
         </div>
       )}
       {register ? (
         <Register
           handleRegister={handleRegister}
           loadUser={loadUser}
-          // registerPage={handleRegister}
+          backToLogin={backToLogin}
         />
       ) : (
         []
@@ -182,5 +174,4 @@ const App = ({ entries }) => {
     </>
   )
 }
-
 export default App

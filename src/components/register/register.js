@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 
-const Register = ({ handleRegister, loadUser }) => {
+const Register = ({backToLogin, handleRegister, loadUser }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -15,6 +15,7 @@ const Register = ({ handleRegister, loadUser }) => {
   const passwordInput = (e) => {
     setPassword(e.target.value)
   }
+
   const signIn = (e) => {
     e.preventDefault()
     fetch('https://boiling-headland-02130.herokuapp.com/register', {
@@ -37,6 +38,9 @@ const Register = ({ handleRegister, loadUser }) => {
   return (
     <>
       <div className="signinForm">
+        <p onClick={backToLogin} className="backToSign">
+          Back to login
+        </p>
         <article className=" br3 ba b--black-10 mv5 w-100 w-50-m w-25-l mw6 shadow-5 center">
           <main className="pa4 black-80">
             <form className="measure">
@@ -80,7 +84,7 @@ const Register = ({ handleRegister, loadUser }) => {
                   />
                 </div>
               </fieldset>
-              <div className="">
+              <div>
                 <input
                   className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
                   type="submit"

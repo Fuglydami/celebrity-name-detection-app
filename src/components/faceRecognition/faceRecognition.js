@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FaceRecognition = ({ imageUrl, celebName, text
+const FaceRecognition = ({ imageUrl
  }) => {
   return (
     <div>

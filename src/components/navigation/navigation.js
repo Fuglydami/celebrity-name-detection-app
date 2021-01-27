@@ -3,6 +3,7 @@ import Tilt from 'react-tilt'
 import './navigation.css'
 import face from './face.png'
 
+
 const Navigation = ({ handleSignOut }) => {
   return (
     <>

@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
   margin: 0;
   font-family: 'Courier New', Courier, monospace;
@@ -38,4 +43,21 @@ button {
   max-width: 95vw;
   margin-left: 8px;
   text-align: center;
+}
+.registerBtn {
+  font-size: 1.5rem;
+  display: flex;
+  margin-top: 10px;
+  margin-left: 75%;
+  justify-content: center;
+  color: black;
+  cursor: pointer;
+}
+.backToSign {
+  justify-content: center;
+  font-size: 1.2rem;
+  display: flex;
+  margin-top: 10px;
+  margin-left: 75%;
+  cursor: pointer;
 }

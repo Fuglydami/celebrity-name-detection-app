@@ -3,21 +3,22 @@ import 'tachyons'
 import './imageLinkForm.css'
 import loadingimg from '../../loadingimg.svg'
 
+
 const ImageLinkForm = ({
   handleChange,
   handleClick,
-  text,
   celebName,
   apiCall,
   loading,
+  name
 }) => {
   return (
     <>
       <section>
         {apiCall ? (
           <div className=" center celebName ml2 ph2">
-            <p className="f4 ttc">
-              <span className="textCeleb flex">{text}</span>{' '}
+            <p className="f4 pv2 ttc">
+              <span className="textCeleb flex">{name}</span>{' '}
               {loading ? (
                 <img className="center" src={loadingimg} alt="loading" />
               ) : (

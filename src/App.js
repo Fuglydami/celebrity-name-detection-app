@@ -63,10 +63,10 @@ const App = ({ entries }) => {
     setName('')
     setUser({ id: '', name: '', email: '', entries: 0, joined: '' })
   }
-const backToLogin=()=>{
-  setRegister(false)
-  setSignIn(true)
-}
+  const backToLogin = () => {
+    setRegister(false)
+    setSignIn(true)
+  }
   const handleChange = (e) => {
     setInput(e.target.value)
   }
@@ -78,8 +78,8 @@ const backToLogin=()=>{
 
   const handleClick = () => {
     setApiCall(true)
-    setName("The celeb name is:")
     setLoading(true)
+    setName('The celeb name is:')
     setImageUrl(input)
 
     fetch('https://boiling-headland-02130.herokuapp.com/imageurl', {

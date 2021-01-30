@@ -1,5 +1,4 @@
 import './index.css'
-import { useState } from 'react'
 import React from 'react'
 import Navigation from './components/navigation/navigation'
 import ImageLinkForm from './components/ImageLinkForm/imageLinkForm'
@@ -8,6 +7,7 @@ import Rank from './components/rank/rank'
 import Register from './components/register/register'
 import SignIn from './components/signIn/signIn'
 import Particles from 'react-particles-js'
+import {useGlobalContext } from './contextApi'
 
 const particles = {
   particles: {
@@ -20,61 +20,31 @@ const particles = {
     },
   },
 }
-const App = ({ entries }) => {
-  const [signIn, setSignIn] = useState(true)
-  const [register, setRegister] = useState(false)
-  const [navigation, setNavigation] = useState(true)
-  const [imageUrl, setImageUrl] = useState('')
-  const [input, setInput] = useState('')
-  const [celebName, setCelebName] = useState('')
-  const [apiCall, setApiCall] = useState(false)
-  const [loading, setLoading] = useState(true)
-  const [name, setName] = useState('')
-  const [user, setUser] = useState({
-    id: '',
-    name: '',
-    email: '',
-    entries: 0,
-    joined: '',
-  })
-
-  const loadUser = (data) => {
-    setUser({
-      id: data.id,
-      name: data.name,
-      email: data.email,
-      entries: data.entries,
-      joined: data.joined,
-    })
-  }
-
-  const handleSignIn = () => {
-    setSignIn(false)
-  }
-  const handleRegister = () => {
-    setRegister(false)
-  }
-  const handleSignOut = () => {
-    setSignIn(true)
-    setImageUrl('')
-    setInput('input')
-    setCelebName('')
-    setApiCall(false)
-    setName('')
-    setUser({ id: '', name: '', email: '', entries: 0, joined: '' })
-  }
-  const backToLogin = () => {
-    setRegister(false)
-    setSignIn(true)
-  }
-  const handleChange = (e) => {
-    setInput(e.target.value)
-  }
-
-  const detectCeleb = (data) => {
-    const clarifaiFace = data.outputs[0].data.regions[0].data.concepts[0].name
-    setCelebName(clarifaiFace)
-  }
+const App = () => {
+  const {
+    setApiCall,
+    setLoading,
+    setName,
+    setImageUrl,
+    input,
+    user,
+    loadUser,
+    detectCeleb,
+    navigation,
+    handleSignOut,
+    handleSignIn,
+    register,
+    signIn,
+    handleChange,
+    apiCall,
+    loading,
+    name,
+    celebName,
+    handleRegister,
+    imageUrl,
+    backToLogin,
+    registerBtn,
+  } = useGlobalContext()
 
   const handleClick = () => {
     setApiCall(true)
@@ -109,10 +79,6 @@ const App = ({ entries }) => {
         setLoading(false)
       })
       .catch((err) => console.log(err))
-  }
-  const registerBtn = () => {
-    setRegister(true)
-    setSignIn(false)
   }
 
   return (

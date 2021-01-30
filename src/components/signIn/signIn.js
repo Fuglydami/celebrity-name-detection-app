@@ -1,7 +1,13 @@
 import React from 'react'
 import { useState } from 'react'
+import { useGlobalContext } from '../../contextApi'
 
-const SignIn = ({ handleSignIn, handleRegister, registerBtn, loadUser }) => {
+const SignIn = () => {
+  const {
+    handleSignIn,
+    registerBtn,
+    loadUser,
+  } = useGlobalContext()
   const [signInEmail, setsignInEmail] = useState('')
   const [signInPassword, setsignInPassword] = useState('')
 
@@ -27,7 +33,7 @@ const SignIn = ({ handleSignIn, handleRegister, registerBtn, loadUser }) => {
       .then((user) => {
         if (user.id) {
           loadUser(user)
-           handleSignIn()
+          handleSignIn()
         }
       })
   }

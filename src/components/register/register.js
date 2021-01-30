@@ -1,7 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
+import { useGlobalContext } from '../../contextApi'
 
-const Register = ({backToLogin, handleRegister, loadUser }) => {
+const Register = () => {
+  const { backToLogin, handleRegister, loadUser } = useGlobalContext()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
